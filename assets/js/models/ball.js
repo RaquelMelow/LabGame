@@ -5,15 +5,20 @@ class Ball {
       this.y = y;
       this.color = color;
       this.radius = radius;
+      
       this.isMouseDown = false;
   
-      this.vx = 0;
-      this.vy = 0;
+      this.vx = VELOCITY_BALL;
+      this.vy = VELOCITY_BALL;
       this.speed = 5;
-        
+      
+      this.bounces = 0;
+      
+    
     }
 
     onMouseEvent(event, type) {
+    
       switch (type) {
         case 'down':
           this.handleMouseDown();
@@ -44,14 +49,8 @@ class Ball {
       this.mouseX = mouseX;
       this.mouseY = mouseY;
     }
+
   
-    update() {
-      if (!this.isMouseDown) {
-        this.x += this.vx;
-        this.y += this.vy;
-      }
-    }
-      
     draw() {
       this.ctx.beginPath();
       this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
@@ -59,4 +58,46 @@ class Ball {
       this.ctx.fillStyle = this.color;
       this.ctx.fill();
     }
-}
+
+    update() {
+      if (!this.isMouseDown) {
+        const canvasW = this.ctx.canvas.width;
+        const canvasH = this.ctx.canvas.height;
+
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x + this.radius > canvasW) {
+          this.x = canvasW - this.radius;
+          this.vx *= -1;
+          this.bounces++;
+          this.vx *= 1 - (this.bounces * 0.1); 
+        } 
+        if (this.x - this.radius < 0) {
+          this.x = this.radius;
+          this.vx *= -1;
+          this.bounces++;
+          this.vx *= 1 - (this.bounces * 0.1);
+        }
+        if (this.y + this.radius > canvasH) {
+          this.y = canvasH - this.radius;
+          this.vy *= -1;
+          this.bounces++;
+          this.vy *= 1 - (this.bounces * 0.1);
+        }
+        if (this.y - this.radius < 0) {
+          this.y = this.radius;
+          this.vy *= -1;
+          this.bounces++;
+          this.vy *= 1 - (this.bounces * 0.1);
+        }
+  
+        if (Math.abs(this.vx) < 0.1) {
+          this.vx = 0;
+        }
+        if (Math.abs(this.vy) < 0.1) {
+          this.vy = 0;
+        }
+      }
+    }
+  }
