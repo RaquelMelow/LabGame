@@ -18,6 +18,7 @@ class Game {
         if(!this.drawIntervalId) {
             this.drawIntervalId = setInterval(() => {
                 this.draw();
+                this.update();
             }, this.fps);
             
         }
