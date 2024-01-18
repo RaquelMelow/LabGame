@@ -7,3 +7,5 @@ const FPS = 1000/60;
 
 const VELOCITY_BALL = 1;
 const MOUSE_SENSITIVITY = 2;
+
+const RADIO_HOLE = 10;

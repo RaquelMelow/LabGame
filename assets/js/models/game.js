@@ -9,9 +9,10 @@ class Game {
         this.drawIntervalId = null;
         this.fps = FPS
 
-        
-
         this.ball = new Ball(this.ctx, 100, 100, 'black', 10);
+        this.hole = new Hole(this.ctx, 200, 200, 'blue', 15);
+        this.score = new Score(this.ctx, 10, 10);
+
     }
 
     start () {
@@ -23,12 +24,24 @@ class Game {
             
         }
     }
+
+    checkCollision() {
+        const distance = Math.sqrt((this.ball.x - this.hole.x)**2 + (this.ball.y - this.hole.y)**2);
+        const collisionDistance = this.ball.radius + this.hole.radius - 5;
+        if (distance <= collisionDistance) {
+            this.ball.disappear();
+        }
+    }
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ball.draw();
+        this.hole.draw();
+        this.score.draw();
+
     }
 
     update() {
+        this.checkCollision();
         this.ball.update();
       }
 
@@ -39,4 +52,6 @@ class Game {
     updateBallPosition(mouseX, mouseY) {
         this.ball.updateBallPosition(mouseX, mouseY);
     }
+
+
 }
