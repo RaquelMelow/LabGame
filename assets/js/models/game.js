@@ -11,20 +11,23 @@ class Game {
         
         this.score = new Score(this.ctx, 10, 10);
         this.ball = new Ball(this.ctx, 100, 100, 'black', 10, 10, 10, this.score);
-        this.hole = new Hole(this.ctx, 200, 200, 'blue', 15);
+        this.hole = new Hole(this.ctx, 200, 200, 'blue', 15, '/assets/img/hole.png');
 
     }
 
     start () {
         if(!this.drawIntervalId) {
             this.drawIntervalId = setInterval(() => {
-                this.clear();
-                this.draw();     
+                this.draw();
                 this.update();
             }, this.fps);
             
         }
     }
+    stop() {
+        clearInterval(this.drawIntervalId);
+        this.drawIntervalId = undefined;
+      }
 
     checkCollision() {
         const distance = Math.sqrt((this.ball.x - this.hole.x)**2 + (this.ball.y - this.hole.y)**2);
@@ -44,10 +47,17 @@ class Game {
     update() {
         this.checkCollision();
         this.ball.update();
+        
       }
 
     onMouseEvent (event, type) {
+        
         this.ball.onMouseEvent(event, type);
+
+        if (type == 'up') {
+            this.score.incrementShots();
+        }
+        
     }
 
     updateBallPosition(mouseX, mouseY) {

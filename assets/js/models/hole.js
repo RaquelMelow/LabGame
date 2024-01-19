@@ -5,12 +5,18 @@ class Hole {
         this.x = x;
         this.y = y;
         this.radius = RADIO_HOLE
+
+        this.w = Math.ceil(1050 / 10);
+        this.h = Math.ceil(559 / 10);
+
+        this.sprite = new Image ();
+        this.sprite.src = "assets/img/hole.png";
+        this.sprite.isReady = false;
+        this.sprite.onload = () => {
+            this.sprite.isReady = true;
+        }
     }
 
-    begin() {
-        const holeX = Math.random() * (this.canvas.width - 30) + 15;
-        const holeY = Math.random() * (this.canvas.height - 30) + 15;
-    }
     draw() {
 
         this.ctx.beginPath();
@@ -21,3 +27,4 @@ class Hole {
 
     }
 }
+
