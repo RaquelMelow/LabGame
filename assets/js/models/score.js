@@ -14,6 +14,10 @@ class Score {
         }
         this.points = points;
     }
+    
+    incrementShots() {
+        this.points++;
+    }
 
     draw () {
         if (this.sprite.isReady) {

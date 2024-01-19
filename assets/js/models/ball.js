@@ -1,5 +1,5 @@
 class Ball {
-  constructor(ctx, x, y, color, radius) {
+  constructor(ctx, x, y, color, radius, scoreX, scoreY) {
     this.ctx = ctx;
     this.x = x;
     this.y = y;
@@ -15,6 +15,8 @@ class Ball {
 
     this.bounces = 0;
     this.lastShootTime = 0;
+
+    this.score = new Score(ctx, scoreX, scoreY);
   }
 
   onMouseEvent(event, type) {
@@ -38,13 +40,16 @@ class Ball {
   }
 
   handleMouseUp() {
-    if (this.isMouseDown) {
+    if (this.isMouseDown) {            
       const angle = Math.atan2(this.y - this.mouseY, this.x - this.mouseX);
       this.vx = Math.cos(angle) * this.speed;
       this.vy = Math.sin(angle) * this.speed;
       this.isMouseDown = false;
       this.isMoving = true;
       this.lastShootTime = Date.now();
+
+      this.score.incrementShots();
+      this.score.draw();
     }
   }
 

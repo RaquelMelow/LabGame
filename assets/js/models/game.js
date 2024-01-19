@@ -8,17 +8,18 @@ class Game {
 
         this.drawIntervalId = null;
         this.fps = FPS
-
-        this.ball = new Ball(this.ctx, 100, 100, 'black', 10);
-        this.hole = new Hole(this.ctx, 200, 200, 'blue', 15);
+        
         this.score = new Score(this.ctx, 10, 10);
+        this.ball = new Ball(this.ctx, 100, 100, 'black', 10, 10, 10, this.score);
+        this.hole = new Hole(this.ctx, 200, 200, 'blue', 15);
 
     }
 
     start () {
         if(!this.drawIntervalId) {
             this.drawIntervalId = setInterval(() => {
-                this.draw();
+                this.clear();
+                this.draw();     
                 this.update();
             }, this.fps);
             
@@ -53,5 +54,8 @@ class Game {
         this.ball.updateBallPosition(mouseX, mouseY);
     }
 
+    clear() {
+        this.ctx.clearRect(this.x - 10, this.y - 10, this.w + 20, this.h + 20);
+    }
 
 }
