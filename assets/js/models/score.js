@@ -13,6 +13,7 @@ class Score {
             this.sprite.isReady = true;
         }
         this.points = points;
+        console.log('H')
     }
     
     incrementShots() {
@@ -33,7 +34,6 @@ class Score {
             this.ctx.fillStyle = 'black';
             this.ctx.font = '25px Arial';
             this.ctx.fillText(this.points, this.x + this.w + 10, this.y + Math.ceil(this.y + this.h / 2));
-            this.ctx.restore();
         }
     }
 }
