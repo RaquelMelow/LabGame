@@ -1,38 +1,40 @@
-class Hole {
+class ObstacleSmall {
 
-    constructor(ctx, x, y) {
-        this.ctx = ctx; 
+    constructor(ctx, x, y, w, h) {
+
+        this.ctx = ctx;
         this.x = x;
         this.y = y;
-      
+        this.w = w;
+        this.h = h;
 
         this.sprite = new Image();
-        this.sprite.src = "assets/img/hole.png";
+        this.sprite.src = "assets/img/arbustorosa.png";
         this.sprite.isReady = false;
         this.sprite.onload = () => {
             this.sprite.isReady = true;
-            this.width = Math.ceil(this.sprite.width / 10);
-            this.height = Math.ceil(this.sprite.height / 10);
-        };
+            this.width = Math.ceil(this.sprite.width/4);
+            this.height = Math.ceil(this.sprite.height/4);
+        }
     }
-    draw() {
+    draw () {
         if (this.sprite.isReady) {
-            this.ctx.globalCompositeOperation = 'destination-out';
+            this.ctx.globalCompositeOperation = 'destination-out'
 
-            this.ctx.fillStyle = "red";
-            this.ctx.fillRect(this.x, this.y, this.width, this.height);
-
+            this.ctx.fillRect(this.x, this.y, this.w, this.h);
             this.ctx.globalCompositeOperation = 'source-over';
 
             this.ctx.drawImage(this.sprite, this.x, this.y, this.width, this.height);
         }
     }
+
     collision(ball) {
         return (
             this.x < ball.x + ball.width &&
-            this.x + this.width > ball.x &&
+            this.x + this.w > ball.x &&
             this.y < ball.y + ball.height &&
-            this.y + this.height > ball.y
+            this.y + this.h > ball.y
         );
+
     }
 }

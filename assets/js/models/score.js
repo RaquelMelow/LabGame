@@ -13,7 +13,6 @@ class Score {
             this.sprite.isReady = true;
         }
         this.points = points;
-        console.log('H')
     }
     
     incrementShots() {
