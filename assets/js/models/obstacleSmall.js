@@ -1,9 +1,9 @@
 class ObstacleSmall {
 
-    constructor(ctx, x, y, w, h) {
+    constructor(ctx, canvasWidth, y, w, h) {
 
         this.ctx = ctx;
-        this.x = x;
+        this.x = canvasWidth - w - MARGIN;
         this.y = y;
         this.w = w;
         this.h = h;
@@ -13,8 +13,8 @@ class ObstacleSmall {
         this.sprite.isReady = false;
         this.sprite.onload = () => {
             this.sprite.isReady = true;
-            this.width = Math.ceil(this.sprite.width/4);
-            this.height = Math.ceil(this.sprite.height/4);
+            this.width = Math.ceil(this.sprite.width);
+            this.height = Math.ceil(this.sprite.height);
         }
     }
     draw () {

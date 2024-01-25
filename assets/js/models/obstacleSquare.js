@@ -13,8 +13,8 @@ class ObstacleSquare {
         this.sprite.isReady = false;
         this.sprite.onload = () => {
             this.sprite.isReady = true;
-            this.width = Math.ceil(this.sprite.width/1.25);
-            this.height = Math.ceil(this.sprite.height/1.37);
+            this.width = Math.ceil(this.sprite.width);
+            this.height = Math.ceil(this.sprite.height);
         }
         
     }

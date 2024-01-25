@@ -12,10 +12,16 @@ body {
     width: 800px;
     height: 600px;
     overflow: hidden; 
-    background-image: url('../img/background.jpg');
     background-size: cover;
     background-position: center;
 }
 
+#container.level1 {
+    background-image: url('../img/background1.jpg');
+}
+
+#container.level2 {
+    background-image: url('../img/background2.jpg');
+}
 
 

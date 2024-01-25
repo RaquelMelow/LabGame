@@ -13,13 +13,16 @@ class Ball {
 
     this.vx = 0;
     this.vy = 0;
-    this.speed = 5;
+    this.speed = 10;
     this.minVelocity = MIN_VELOCITY; 
 
     this.reductionFactor = REDUCTION_FACTOR;
 
     this.bounces = 0;
     this.lastShootTime = 0;
+
+    this.mouseX = 0;
+    this.mouseY = 0;
 
     this.sprite = new Image();
     this.sprite.src = "assets/img/ball.png";
@@ -35,7 +38,7 @@ class Ball {
   onMouseEvent(event, type, score) {
     switch (type) {
       case 'down':
-        this.handleMouseDown();
+        this.handleMouseDown(event);
         break;
       case 'up':
         this.handleMouseUp(score);
@@ -46,20 +49,24 @@ class Ball {
     }
   }
 
-  handleMouseDown() {
+  handleMouseDown(event) {
     if (!this.isMoving) {
       this.isMouseDown = true;
+      this.mouseX = event.clientX;
+      this.mouseY = event.clientY;
     }
   }
 
   handleMouseUp(score) {
     if (this.isMouseDown) {
-          // Calcula el ángulo entre la posición del objeto y la posición del mouse
+      /*    // Calcula el ángulo entre la posición del objeto y la posición del mouse
       const angle = Math.atan2(this.mouseY - this.y, this.mouseX - this.x);
           // Calcula las componentes de velocidad en x e y basadas en el ángulo y la velocidad predeterminada
       this.vx = -Math.cos(angle) * this.speed;
       this.vy = -Math.sin(angle) * this.speed;
-
+      */
+      this.vx = this.speed * (this.x >= this.mouseX ? 1 : -1)
+      this.vy = this.speed * (this.y >= this.mouseY ? 1 : -1)
       
       this.isMouseDown = false;
       this.isMoving = true;
@@ -127,10 +134,22 @@ class Ball {
   }
 
   handleCollision(axis) {
-    if (axis === 'x') {
+    /*if (axis === 'x') {
       this.vx = -this.vx;
     } else {
       this.vy = -this.vy;
+    }*/
+
+    switch(true) {
+
+      case axis.down:
+      case axis.up:
+        this.vy = -this.vy;
+        break;
+      case axis.left:
+      case axis.right:
+        this.vx = -this.vx;
+        break;
     }
   }
 }

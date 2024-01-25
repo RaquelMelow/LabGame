@@ -4,8 +4,8 @@ class Score {
         this.ctx = ctx;
         this.x = x;
         this.y = y;
-        this.w = Math.ceil(512 / 10);
-        this.h = Math.ceil(512 / 10);
+        this.w = Math.ceil(512 / 6);
+        this.h = Math.ceil(512 / 6);
 
         this.sprite = new Image ();
         this.sprite.src = "assets/img/score.png";
