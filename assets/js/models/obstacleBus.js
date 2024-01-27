@@ -1,22 +1,24 @@
-class Obstacles {
+class ObstacleBus {
 
-    constructor(ctx, canvasWidth, y, w, h) {
+    constructor (ctx, canvasWidth, y, h, w) {
+
         this.ctx = ctx;
-        this.x = canvasWidth - w - MARGIN;
+        this.x = canvasWidth  - w - MARGIN;
         this.y = y;
-        this.w = w;
         this.h = h;
-        
+        this.w = w;
+
         this.sprite = new Image();
-        this.sprite.src = "assets/img/valla.png";
+        this.sprite.src = "assets/img/bus.png";
         this.sprite.isReady = false;
         this.sprite.onload = () => {
             this.sprite.isReady = true;
-            this.width = Math.ceil(this.sprite.width);
-            this.height = Math.ceil(this.sprite.height);
+            this.w = Math.ceil(this.sprite.width);
+            this.h = Math.ceil(this.sprite.height);
         };
     }
-        draw() {
+
+    draw() {
         if (this.sprite.isReady) {
             this.ctx.globalCompositeOperation = 'destination-out';
 
@@ -25,11 +27,9 @@ class Obstacles {
 
             this.ctx.globalCompositeOperation = 'source-over';
 
-           this.ctx.drawImage(this.sprite, this.x, this.y, this.width, this.height);
+           this.ctx.drawImage(this.sprite, this.x, this.y, this.w, this.h);
         }
     }
-
-
 
     collision(ball) {
         return (

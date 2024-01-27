@@ -1,9 +1,9 @@
 class ObstacleCar {
 
-    constructor (ctx, x, y, h, w) {
+    constructor (ctx, canvasWidth, y, h, w) {
 
         this.ctx = ctx;
-        this.x = x;
+        this.x = canvasWidth  - w - MARGIN;
         this.y = y;
         this.h = h;
         this.w = w;

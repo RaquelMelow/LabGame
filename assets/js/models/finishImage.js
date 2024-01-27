@@ -1,11 +1,10 @@
-class TransitionImage {
-    constructor(ctx, canvas, imagePath, displayTime) {
+class FinishImage {
+    constructor(ctx, canvas, imagePath) {
       this.ctx = ctx;
       this.canvas = canvas;
       this.image = new Image();
       this.image.src = imagePath;
       this.loaded = false;
-      this.displayTime = displayTime;
       this.visible = false;
   
       this.image.onload = () => {
@@ -17,10 +16,6 @@ class TransitionImage {
     showForDisplayTime() {
       this.visible = true;
       this.draw();
-  
-      setTimeout(() => {
-        this.visible = false;
-      }, this.displayTime);
     }
   
     draw() {
@@ -31,5 +26,3 @@ class TransitionImage {
       }
     }
   }
-  
-  

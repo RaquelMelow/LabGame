@@ -1,11 +1,10 @@
-class TransitionImage {
-    constructor(ctx, canvas, imagePath, displayTime) {
+class TotalScoreImage {
+    constructor(ctx, canvas, imagePath) {
       this.ctx = ctx;
       this.canvas = canvas;
       this.image = new Image();
       this.image.src = imagePath;
       this.loaded = false;
-      this.displayTime = displayTime;
       this.visible = false;
   
       this.image.onload = () => {
@@ -31,5 +30,3 @@ class TransitionImage {
       }
     }
   }
-  
-  

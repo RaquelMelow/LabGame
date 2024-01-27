@@ -7,22 +7,28 @@ class Ball {
     this.width = w;
     this.height = h;
 
-    
     this.isMouseDown = false;
     this.isMoving = false;
 
     this.vx = 0;
     this.vy = 0;
     this.speed = 10;
-    this.minVelocity = MIN_VELOCITY; 
 
+    this.minVelocity = MIN_VELOCITY; 
     this.reductionFactor = REDUCTION_FACTOR;
 
     this.bounces = 0;
     this.lastShootTime = 0;
 
+    this.startMouseX = 0;
+    this.startMouseY = 0;
+    this.launchForce = 0;
+
     this.mouseX = 0;
     this.mouseY = 0;
+
+    this.score = 0;
+
 
     this.sprite = new Image();
     this.sprite.src = "assets/img/ball.png";
@@ -49,36 +55,47 @@ class Ball {
     }
   }
 
+
   handleMouseDown(event) {
     if (!this.isMoving) {
       this.isMouseDown = true;
-      this.mouseX = event.clientX;
-      this.mouseY = event.clientY;
+      this.startMouseX = event.clientX;
+      this.startMouseY = event.clientY;
     }
   }
+  
 
   handleMouseUp(score) {
     if (this.isMouseDown) {
-      /*    // Calcula el ángulo entre la posición del objeto y la posición del mouse
-      const angle = Math.atan2(this.mouseY - this.y, this.mouseX - this.x);
-          // Calcula las componentes de velocidad en x e y basadas en el ángulo y la velocidad predeterminada
-      this.vx = -Math.cos(angle) * this.speed;
-      this.vy = -Math.sin(angle) * this.speed;
-      */
-      this.vx = this.speed * (this.x >= this.mouseX ? 1 : -1)
-      this.vy = this.speed * (this.y >= this.mouseY ? 1 : -1)
+      const deltaX = this.mouseX - this.startMouseX;
+      const deltaY = this.mouseY - this.startMouseY;
       
+      this.launchForce = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+      
+      this.vx = -deltaX / this.launchForce * this.speed;
+      this.vy = -deltaY / this.launchForce * this.speed;
+      
+
       this.isMouseDown = false;
       this.isMoving = true;
       this.lastShootTime = Date.now();
 
       score.incrementShots();
+      this.score++;
+
     }
   }
 
+  getScore() {
+    return this.score;
+  }
+
+
   handleMouseMove(mouseX, mouseY) {
-    this.mouseX = mouseX;
+    if (this.isMouseDown) {
+      this.mouseX = mouseX;
     this.mouseY = mouseY;
+    }
   }
 
   draw() {
@@ -134,11 +151,6 @@ class Ball {
   }
 
   handleCollision(axis) {
-    /*if (axis === 'x') {
-      this.vx = -this.vx;
-    } else {
-      this.vy = -this.vy;
-    }*/
 
     switch(true) {
 
@@ -152,4 +164,6 @@ class Ball {
         break;
     }
   }
+
+  
 }

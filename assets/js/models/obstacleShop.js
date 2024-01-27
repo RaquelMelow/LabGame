@@ -1,4 +1,4 @@
-class Obstacles {
+class ObstacleShop {
 
     constructor(ctx, canvasWidth, y, w, h) {
         this.ctx = ctx;
@@ -8,12 +8,12 @@ class Obstacles {
         this.h = h;
         
         this.sprite = new Image();
-        this.sprite.src = "assets/img/valla.png";
+        this.sprite.src = "assets/img/shop.png";
         this.sprite.isReady = false;
         this.sprite.onload = () => {
             this.sprite.isReady = true;
-            this.width = Math.ceil(this.sprite.width);
-            this.height = Math.ceil(this.sprite.height);
+            this.w = Math.ceil(this.sprite.width);
+            this.h = Math.ceil(this.sprite.height);
         };
     }
         draw() {
@@ -25,7 +25,7 @@ class Obstacles {
 
             this.ctx.globalCompositeOperation = 'source-over';
 
-           this.ctx.drawImage(this.sprite, this.x, this.y, this.width, this.height);
+           this.ctx.drawImage(this.sprite, this.x, this.y, this.w, this.h);
         }
     }
 

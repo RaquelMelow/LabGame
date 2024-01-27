@@ -24,4 +24,13 @@ body {
     background-image: url('../img/background2.jpg');
 }
 
+#container.level3 {
+    background-image: url('../img/background3.png');
+}
+
+#container.level4 {
+    background-image: url('../img/totalScore.png');
+}
+
+
 

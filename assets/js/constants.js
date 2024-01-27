@@ -13,5 +13,6 @@ const MIN_VELOCITY = 0.15;
 
 const REDUCTION_FACTOR = 0.02;
 
+const TRANSITION_DURATION = 2000;
 
 
