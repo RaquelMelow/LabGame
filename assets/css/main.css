@@ -16,21 +16,69 @@ body {
     background-position: center;
 }
 
-#container.level1 {
-    background-image: url('../img/background1.jpg');
+.panel-start {
+    width: 800px;
+    height: 600px;
+    background-image: url('/assets/img/startImage.png');
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#container.level2 {
-    background-image: url('../img/background2.jpg');
+
+
+.hidden {
+    display: none;
 }
 
-#container.level3 {
-    background-image: url('../img/background3.png');
+#game-panel.level1 {
+    background-image: url('/assets/img/background1.jpg');
 }
 
-#container.level4 {
-    background-image: url('../img/totalScore.png');
+#game-panel.level2 {
+    background-image: url('/assets/img/background2.jpg');
 }
 
+#game-panel.level3 {
+    background-image: url('/assets/img/background3.png');
+}
+
+#game-panel.level4 {
+    background-image: url('/assets/img/totalScore.png');
+}
+
+body {
+    font-family: 'Pixelify Sans', sans-serif;
+    font-weight: 300;
+}
+
+#btn-start-game {
+    background: url('/assets/img/btn-start-game.png') no-repeat center center;
+    background-size: contain;
+    width: 150px;
+    height: 50px;
+    border: none;
+    color: transparent;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#musicBtn {
+    background: url('/assets/img/btn-music.png') no-repeat center center;
+    background-size: contain;  /* Ajusta el tamaño de la imagen */
+    position: absolute;
+    color: transparent;
+    display: inline-block;
+    top: 90px;
+    right: 340px;  
+    width: 150px;
+    height: 60px;
+    border: none;
+    cursor: pointer;
+    
+}
 
 

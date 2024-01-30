@@ -1,36 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-<link rel="stylesheet" type="text/css" href="assets/css/main.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Minigolf Arcade</title>
+        <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+        <link href="https://fonts.cdnfonts.com/css/pixelify-sans" rel="stylesheet">              
+    </head>
 
-<body>
-    <div id="container">
-        <canvas id="main-canvas"></canvas>
-    </div>
+    <body>
+        <div id="start-panel" class="panel panel-start d-flex flex-column justify-content-center align-items-center">
+            <button id="btn-start-game" class="btn btn-primary">Start</button>
+        </div>
+        
+        <div id="game-panel" class="panel hidden position-relative">
+            <canvas id="main-canvas"></canvas>
+        </div>
 
+        <button id="musicBtn">Press 'P' to Play Music</button>
 
-    <script src="assets/js/constants.js"></script>
-    <script src="assets/js/models/score.js"></script>
-    <script src="assets/js/models/ball.js"></script>
-    <script src="assets/js/models/hole.js"></script>
-    <script src="assets/js/models/obstacles.js"></script>
-    <script src="assets/js/models/obstacleSquare.js"></script>
-    <script src="assets/js/models/obstacleSmall.js"></script>
-    <script src="assets/js/models/transition.js"></script>
-    <script src="assets/js/models/obstacleCar.js"></script>
-    <script src="assets/js/models/obstacleGreenCar.js"></script>
-    <script src="assets/js/models/obstacleBus.js"></script>
-    <script src="assets/js/models/obstacleSunrise.js"></script>
-    <script src="assets/js/models/obstacleShop.js"></script>
-    <script src="assets/js/models/obstacleShop2.js"></script>
-    <script src="assets/js/models/obstacleBusStop.js"></script>
-    <script src="assets/js/models/finishImage.js"></script>
-    <script src="assets/js/models/totalScore.js"></script>
-    <script src="assets/js/models/game.js"></script>
-    <script src="assets/js/main.js"></script>
-</body>
+        <audio id="music" src="assets/audio/music.mp3" type="audio/mp3"></audio> 
+        
+        <script>
+            const musicBtn = document.getElementById('musicBtn');
+            const music = document.getElementById('music');
+    
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'P' || event.key === 'p') {
+                    if (music.paused || music.currentTime === 0) {
+                        music.play();
+                    } else {
+                        music.pause();
+                    }
+                }
+            });
+        </script>
+        <script src="assets/js/constants.js"></script>
+        <script src="assets/js/models/score.js"></script>
+        <script src="assets/js/models/ball.js"></script>
+        <script src="assets/js/models/hole.js"></script>
+        <script src="assets/js/models/obstacles.js"></script>
+        <script src="assets/js/models/obstacleSquare.js"></script>
+        <script src="assets/js/models/obstacleSmall.js"></script>
+        <script src="assets/js/models/transition.js"></script>
+        <script src="assets/js/models/obstacleCar.js"></script>
+        <script src="assets/js/models/obstacleGreenCar.js"></script>
+        <script src="assets/js/models/obstacleBus.js"></script>
+        <script src="assets/js/models/obstacleSunrise.js"></script>
+        <script src="assets/js/models/obstacleShop.js"></script>
+        <script src="assets/js/models/obstacleShop2.js"></script>
+        <script src="assets/js/models/obstacleBusStop.js"></script>
+        <script src="assets/js/models/finishImage.js"></script>
+        <script src="assets/js/models/totalScore.js"></script>
+        <script src="assets/js/models/game.js"></script>
+        <script src="assets/js/main.js"></script>
+    </body>
 </html>

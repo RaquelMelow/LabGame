@@ -13,6 +13,9 @@ class Game {
 
     this.totalScore = 0;
 
+    //this.isBallActive = false;
+
+
     this.score = new Score(this.ctx, 10, 10);
     this.ball = new Ball(this.ctx, 600, 550, "black", 10, "assets/img/ball.png");
     this.hole = new Hole(this.ctx, 550, 200, "red", 15, "assets/img/hole.png");
@@ -23,11 +26,11 @@ class Game {
     this.finishImage = new FinishImage(this.ctx, this.canvas, "assets/img/finish.png");
     this.totalScoreImage = new TotalScoreImage(this.ctx, this.canvas, "assets/img/totalScore.png")
 
+    this.backgroundMusic = new Audio("assets/audio/music.mp3");
 
   }
 
   changeLevel() {
-    console.log(this.level);
     this.obstacles = [];
     switch (this.level) {
       case 1:
@@ -93,6 +96,7 @@ class Game {
       this.transitionImage.showForDisplayTime();
     }
   }
+  
 
   start() {
     this.changeLevel();
@@ -102,6 +106,10 @@ class Game {
         this.draw();
         this.update();
       }, this.fps);
+
+      if (this.isBallActive) {
+        //this.ball.canMove = true;
+      }
     }
   }
 
@@ -118,9 +126,9 @@ class Game {
       const ballBottom = ballTop + 15 + this.ball.height + 15;
 
       const axis = {
-        up: ballRight > obstacle.x && ballLeft < obstacle.x + obstacle.w && ballBottom <= obstacle.y + 15,
+        up: ballRight * 2 > obstacle.x  && ballLeft < obstacle.x + obstacle.w && ballBottom <= obstacle.y +50,
         down: ballRight > obstacle.x && ballLeft < obstacle.x + obstacle.w && ballTop + 15 >= obstacle.y + obstacle.h,
-        left: ballBottom > obstacle.y && ballTop < obstacle.y + obstacle.h && ballRight < obstacle.x,
+        left: ballBottom > obstacle.y && ballTop < obstacle.y + obstacle.h && ballRight < obstacle.x +50,
         right: ballBottom > obstacle.y && ballTop < obstacle.y + obstacle.h && ballLeft >= obstacle.x + obstacle.w - 15
 
       };
@@ -143,9 +151,11 @@ class Game {
 
   drawTotalScore() {
 
-    this.ctx.font = '72px Arial';
+    this.ctx.save();
+    this.ctx.font = '72px Pixelify Sans';
     this.ctx.fillStyle = 'white'
     this.ctx.fillText("Total Score: " + this.totalScore, 170, 320);
+    this.ctx.restore();
 
     this.totalScoreImage.draw();
 
@@ -184,9 +194,11 @@ class Game {
     this.obstacles = [];
     this.canvas.parentElement.classList.add("level4");
     this.canvas.parentElement.classList.remove("level3");
-    this.start();
     this.drawTotalScore();
     this.showFinishImage = true;
-    this.stop();
+    this.start();
+    setTimeout(() => {
+      location.reload();
+    }, 1000);
   }
 }

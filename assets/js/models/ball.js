@@ -29,6 +29,8 @@ class Ball {
 
     this.score = 0;
 
+    //this.canMove = false;
+
 
     this.sprite = new Image();
     this.sprite.src = "assets/img/ball.png";
@@ -79,6 +81,7 @@ class Ball {
       this.isMouseDown = false;
       this.isMoving = true;
       this.lastShootTime = Date.now();
+      //this.canMove = true;
 
       score.incrementShots();
       this.score++;
