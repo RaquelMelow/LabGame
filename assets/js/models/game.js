@@ -13,9 +13,6 @@ class Game {
 
     this.totalScore = 0;
 
-    //this.isBallActive = false;
-
-
     this.score = new Score(this.ctx, 10, 10);
     this.ball = new Ball(this.ctx, 600, 550, "black", 10, "assets/img/ball.png");
     this.hole = new Hole(this.ctx, 550, 200, "red", 15, "assets/img/hole.png");
@@ -107,9 +104,7 @@ class Game {
         this.update();
       }, this.fps);
 
-      if (this.isBallActive) {
-        //this.ball.canMove = true;
-      }
+     
     }
   }
 
