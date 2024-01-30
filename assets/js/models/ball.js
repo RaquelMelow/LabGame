@@ -12,7 +12,7 @@ class Ball {
 
     this.vx = 0;
     this.vy = 0;
-    this.speed = 10;
+    this.speed = 15;
 
     this.minVelocity = MIN_VELOCITY; 
     this.reductionFactor = REDUCTION_FACTOR;

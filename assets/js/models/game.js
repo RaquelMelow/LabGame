@@ -24,6 +24,9 @@ class Game {
     this.totalScoreImage = new TotalScoreImage(this.ctx, this.canvas, "assets/img/totalScore.png")
 
     this.backgroundMusic = new Audio("assets/audio/music.mp3");
+    this.startMusic = new Audio("assets/audio/game-start.mp3");
+    this.holeCollisionSound = new Audio("assets/audio/collision.mp3");
+
 
   }
 
@@ -96,6 +99,10 @@ class Game {
   
 
   start() {
+    if (this.level === 1) {
+      this.startMusic.play();
+      this.startMusic.volume = 0.4;
+    }
     this.changeLevel();
 
     if (!this.drawIntervalId) {
@@ -129,13 +136,16 @@ class Game {
       };
 
       this.ball.handleCollision(axis);
+
     }
   }
 
   checkCollision() {
     this.obstacles.forEach((obstacle) => this.handleObstacleCollision(obstacle));
 
+
     if (this.hole.collision(this.ball)) {
+      this.holeCollisionSound.play();
       this.stop();
       this.nextLevel();
       setTimeout(() => {
